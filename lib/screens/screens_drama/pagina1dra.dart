@@ -16,6 +16,7 @@ class _MyAppState extends State<Pagina1dra> {
   final List<String> listOfVideos = ["gQt08ojR12I", "3vPbzEhF63s"];
   String currentPlayingVideo = "";
   VideoController? videoController;
+  bool isVideoReady = false; // To track if the video controller is initialized
 
   @override
   void initState() {
@@ -26,27 +27,32 @@ class _MyAppState extends State<Pagina1dra> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'The Shawshank Redemption ',
+      title: 'The Shawshank Redemption',
+      theme: ThemeData.dark(),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('The Shawshank Redemption '),
+          title: const Text('The Shawshank Redemption'),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pop(context); // Volver a la pantalla anterior
+              Navigator.pop(context); // Go back to the previous screen
             },
           ),
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Video Player
             YoutubePlayerEmbed(
               key: ValueKey(currentPlayingVideo), // Unique key for the video
               callBackVideoController: (controller) {
                 videoController = controller;
+                setState(() {
+                  isVideoReady = true; // Mark the video as ready when controller is set
+                });
               },
               videoId: currentPlayingVideo,
-              customVideoTitle: "The Shawshank Redemption ",
+              customVideoTitle: "The Shawshank Redemption",
               autoPlay: false,
               hidenVideoControls: false,
               mute: false,
@@ -92,34 +98,43 @@ class _MyAppState extends State<Pagina1dra> {
               },
             ),
             const SizedBox(height: 100),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () async {
-                    await videoController?.playVideo();
-                  },
-                  child: const Text("Play"),
-                ),
-                ElevatedButton(
-                  onPressed: () async {
-                    await videoController?.pauseVideo();
-                  },
-                  child: const Text("Pause"),
-                ),
-                ElevatedButton(
-                  onPressed: () async {
-                    await videoController?.muteOrUnmuteVideo();
-                  },
-                  child: const Text("Mute / Unmute"),
-                ),
-              ],
-            ),
+            // Control buttons
+            isVideoReady
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () async {
+                          await videoController?.playVideo();
+                        },
+                        child: const Text("Play"),
+                      ),
+                      const SizedBox(width: 20),
+                      ElevatedButton(
+                        onPressed: () async {
+                          await videoController?.pauseVideo();
+                        },
+                        child: const Text("Pause"),
+                      ),
+                      const SizedBox(width: 20),
+                      ElevatedButton(
+                        onPressed: () async {
+                          await videoController?.muteOrUnmuteVideo();
+                        },
+                        child: const Text("Mute / Unmute"),
+                      ),
+                    ],
+                  )
+                : const Center(
+                    child: CircularProgressIndicator(), // Show loading spinner while video is not ready
+                  ),
             const SizedBox(height: 50),
             ElevatedButton(
-              onPressed: () async {
-                await videoController?.seekTo(time: 4);
-              },
+              onPressed: isVideoReady
+                  ? () async {
+                      await videoController?.seekTo(time: 4);
+                    }
+                  : null, // Disabled until the video is ready
               child: const Text("Seek to 4 seconds (for test)"),
             ),
           ],

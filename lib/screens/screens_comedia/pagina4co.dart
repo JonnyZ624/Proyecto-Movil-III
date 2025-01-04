@@ -26,27 +26,37 @@ class _MyAppState extends State<Pagina4co> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Crazy, Stupid, Love ',
+      title: 'Crazy, Stupid, Love',
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: Colors.black,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.black,
+          iconTheme: IconThemeData(color: Colors.white),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+        ),
+      ),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Crazy, Stupid, Love '),
+          title: const Text('Crazy, Stupid, Love'),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pop(context); // Volver a la pantalla anterior
+              Navigator.pop(context);
             },
           ),
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Video Player
             YoutubePlayerEmbed(
-              key: ValueKey(currentPlayingVideo), // Unique key for the video
+              key: ValueKey(currentPlayingVideo),
               callBackVideoController: (controller) {
                 videoController = controller;
               },
               videoId: currentPlayingVideo,
-              customVideoTitle: "Crazy, Stupid, Love ",
+              customVideoTitle: "Crazy, Stupid, Love",
               autoPlay: false,
               hidenVideoControls: false,
               mute: false,
@@ -92,34 +102,45 @@ class _MyAppState extends State<Pagina4co> {
               },
             ),
             const SizedBox(height: 100),
+            // Control buttons
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: () async {
-                    await videoController?.playVideo();
-                  },
+                  onPressed: videoController != null
+                      ? () async {
+                          await videoController?.playVideo();
+                        }
+                      : null, // Disabled until the controller is initialized
                   child: const Text("Play"),
                 ),
+                const SizedBox(width: 20),
                 ElevatedButton(
-                  onPressed: () async {
-                    await videoController?.pauseVideo();
-                  },
+                  onPressed: videoController != null
+                      ? () async {
+                          await videoController?.pauseVideo();
+                        }
+                      : null, // Disabled until the controller is initialized
                   child: const Text("Pause"),
                 ),
+                const SizedBox(width: 20),
                 ElevatedButton(
-                  onPressed: () async {
-                    await videoController?.muteOrUnmuteVideo();
-                  },
+                  onPressed: videoController != null
+                      ? () async {
+                          await videoController?.muteOrUnmuteVideo();
+                        }
+                      : null, // Disabled until the controller is initialized
                   child: const Text("Mute / Unmute"),
                 ),
               ],
             ),
             const SizedBox(height: 50),
             ElevatedButton(
-              onPressed: () async {
-                await videoController?.seekTo(time: 4);
-              },
+              onPressed: videoController != null
+                  ? () async {
+                      await videoController?.seekTo(time: 4);
+                    }
+                  : null, // Disabled until the controller is initialized
               child: const Text("Seek to 4 seconds (for test)"),
             ),
           ],

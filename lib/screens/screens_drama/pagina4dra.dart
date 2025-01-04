@@ -26,10 +26,11 @@ class _MyAppState extends State<Pagina4dra> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Schindlers List ',
+      title: 'Schindlers List',
+      theme: ThemeData.dark(), // Aplicando el tema oscuro aquí
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Schindlers List '),
+          title: const Text('Schindlers List'),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
@@ -40,13 +41,14 @@ class _MyAppState extends State<Pagina4dra> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Video Player
             YoutubePlayerEmbed(
-              key: ValueKey(currentPlayingVideo), // Unique key for the video
+              key: ValueKey(currentPlayingVideo),
               callBackVideoController: (controller) {
                 videoController = controller;
               },
               videoId: currentPlayingVideo,
-              customVideoTitle: "Schindlers List ",
+              customVideoTitle: "Schindlers List",
               autoPlay: false,
               hidenVideoControls: false,
               mute: false,
@@ -92,6 +94,7 @@ class _MyAppState extends State<Pagina4dra> {
               },
             ),
             const SizedBox(height: 100),
+            // Control buttons with spacing
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -116,6 +119,7 @@ class _MyAppState extends State<Pagina4dra> {
               ],
             ),
             const SizedBox(height: 50),
+            // Seek button
             ElevatedButton(
               onPressed: () async {
                 await videoController?.seekTo(time: 4);

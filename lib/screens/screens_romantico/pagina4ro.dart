@@ -26,10 +26,11 @@ class _MyAppState extends State<Pagina4ro> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Titanic ',
+      title: 'Titanic',
+      theme: ThemeData.dark(), // Aplicando tema oscuro
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Titanic '),
+          title: const Text('Titanic'),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
@@ -40,13 +41,14 @@ class _MyAppState extends State<Pagina4ro> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Reproductor de video
             YoutubePlayerEmbed(
-              key: ValueKey(currentPlayingVideo), // Unique key for the video
+              key: ValueKey(currentPlayingVideo), // Clave única para el video
               callBackVideoController: (controller) {
                 videoController = controller;
               },
               videoId: currentPlayingVideo,
-              customVideoTitle: "Titanic ",
+              customVideoTitle: "Titanic",
               autoPlay: false,
               hidenVideoControls: false,
               mute: false,
@@ -92,6 +94,7 @@ class _MyAppState extends State<Pagina4ro> {
               },
             ),
             const SizedBox(height: 100),
+            // Controles de video
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -116,6 +119,7 @@ class _MyAppState extends State<Pagina4ro> {
               ],
             ),
             const SizedBox(height: 50),
+            // Botón de avance rápido
             ElevatedButton(
               onPressed: () async {
                 await videoController?.seekTo(time: 4);

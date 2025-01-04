@@ -13,23 +13,23 @@ class Pagina4t extends StatefulWidget {
 }
 
 class _MyAppState extends State<Pagina4t> {
-  final List<String> listOfVideos = ["1WYM5XuCnXE", "3vPbzEhF63s"];
-  String currentPlayingVideo = "";
+  final List<String> listOfVideos = ["1WYM5XuCnXE", "3vPbzEhF63s"]; // Lista de IDs de videos de YouTube
+  String currentPlayingVideo = ""; // El video que se está reproduciendo actualmente
   VideoController? videoController;
 
   @override
   void initState() {
     super.initState();
-    currentPlayingVideo = listOfVideos.removeAt(0);
+    currentPlayingVideo = listOfVideos.removeAt(0); // Establecer el primer video para reproducir
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Superbad ',
+      title: 'Superbad', // Título de la app
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Superbad '),
+          title: const Text('Superbad'), // Título en la barra de navegación
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
@@ -37,38 +37,43 @@ class _MyAppState extends State<Pagina4t> {
             },
           ),
         ),
+        backgroundColor: Colors.black, // Fondo de la pantalla negro
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Widget para el reproductor de YouTube
             YoutubePlayerEmbed(
-              key: ValueKey(currentPlayingVideo), // Unique key for the video
+              key: ValueKey(currentPlayingVideo), // Clave única para el video
               callBackVideoController: (controller) {
-                videoController = controller;
+                videoController = controller; // Guardar el controlador del video
               },
-              videoId: currentPlayingVideo,
-              customVideoTitle: "Superbad ",
-              autoPlay: false,
-              hidenVideoControls: false,
-              mute: false,
-              enabledShareButton: false,
-              hidenChannelImage: true,
-              aspectRatio: 16 / 9,
+              videoId: currentPlayingVideo, // ID del video actual
+              customVideoTitle: "Superbad", // Título personalizado del video
+              autoPlay: false, // No reproducir automáticamente
+              hidenVideoControls: false, // Mostrar controles del video
+              mute: false, // No está silenciado por defecto
+              enabledShareButton: false, // Deshabilitar botón de compartir
+              hidenChannelImage: true, // Ocultar la imagen del canal
+              aspectRatio: 16 / 9, // Relación de aspecto del video
               onVideoEnd: () {
+                // Cuando el video termina
                 if (listOfVideos.isNotEmpty) {
                   setState(() {
-                    currentPlayingVideo = listOfVideos.removeAt(0);
+                    currentPlayingVideo = listOfVideos.removeAt(0); // Reproducir siguiente video
                   });
                 } else {
+                  // Mostrar un mensaje si no hay más videos para reproducir
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('No more videos to play!')),
                   );
                 }
               },
               onVideoSeek: (currentTime) =>
-                  print("Seeked to $currentTime seconds"),
+                  print("Seeked to $currentTime seconds"), // Mostrar tiempo actual del video
               onVideoTimeUpdate: (currentTime) =>
-                  print("Current time: $currentTime seconds"),
+                  print("Current time: $currentTime seconds"), // Actualización del tiempo de reproducción
               onVideoStateChange: (state) {
+                // Detectar cambios de estado del video
                 switch (state) {
                   case VideoState.playing:
                     print("Video is playing");
@@ -92,33 +97,35 @@ class _MyAppState extends State<Pagina4t> {
               },
             ),
             const SizedBox(height: 100),
+            // Fila de botones para controlar el video
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
                   onPressed: () async {
-                    await videoController?.playVideo();
+                    await videoController?.playVideo(); // Reproducir video
                   },
                   child: const Text("Play"),
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    await videoController?.pauseVideo();
+                    await videoController?.pauseVideo(); // Pausar video
                   },
                   child: const Text("Pause"),
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    await videoController?.muteOrUnmuteVideo();
+                    await videoController?.muteOrUnmuteVideo(); // Silenciar / desilenciar video
                   },
                   child: const Text("Mute / Unmute"),
                 ),
               ],
             ),
             const SizedBox(height: 50),
+            // Botón para avanzar el video a los 4 segundos
             ElevatedButton(
               onPressed: () async {
-                await videoController?.seekTo(time: 4);
+                await videoController?.seekTo(time: 4); // Avanzar a los 4 segundos
               },
               child: const Text("Seek to 4 seconds (for test)"),
             ),

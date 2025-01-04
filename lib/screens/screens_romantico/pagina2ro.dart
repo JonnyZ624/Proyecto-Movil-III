@@ -26,10 +26,11 @@ class _MyAppState extends State<Pagina2ro> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Pride and Prejudice ',
+      title: 'Pride and Prejudice',
+      theme: ThemeData.dark(), // Estableciendo el tema oscuro
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Pride and Prejudice '),
+          title: const Text('Pride and Prejudice'),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
@@ -40,13 +41,14 @@ class _MyAppState extends State<Pagina2ro> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Reproductor de video
             YoutubePlayerEmbed(
-              key: ValueKey(currentPlayingVideo), // Unique key for the video
+              key: ValueKey(currentPlayingVideo), // Clave única para el video
               callBackVideoController: (controller) {
                 videoController = controller;
               },
               videoId: currentPlayingVideo,
-              customVideoTitle: "Pride and Prejudice ",
+              customVideoTitle: "Pride and Prejudice",
               autoPlay: false,
               hidenVideoControls: false,
               mute: false,
@@ -92,6 +94,7 @@ class _MyAppState extends State<Pagina2ro> {
               },
             ),
             const SizedBox(height: 100),
+            // Botones de control de video
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -116,6 +119,7 @@ class _MyAppState extends State<Pagina2ro> {
               ],
             ),
             const SizedBox(height: 50),
+            // Botón de buscar en el video
             ElevatedButton(
               onPressed: () async {
                 await videoController?.seekTo(time: 4);
