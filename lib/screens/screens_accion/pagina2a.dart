@@ -28,24 +28,24 @@ class _MyAppState extends State<Pagina2a> {
     return MaterialApp(
       title: 'The Dark Knight',
       home: Scaffold(
-        // Fondo negro para toda la pantalla
+        
         appBar: AppBar(
-          title: const Text('The Dark Knight', style: TextStyle(color: Colors.white)), // Título en blanco
-          backgroundColor: Colors.black, // Fondo del AppBar negro
+          title: const Text('The Dark Knight', style: TextStyle(color: Colors.white)), 
+          backgroundColor: Colors.black, 
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.white), // Icono en blanco
+            icon: const Icon(Icons.arrow_back, color: Colors.white), 
             onPressed: () {
-              Navigator.pop(context); // Volver a la pantalla anterior
+              Navigator.pop(context); 
             },
           ),
         ),
         body: Container(
-          color: Colors.black, // Fondo negro de la pantalla
+          color: Colors.black, 
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               YoutubePlayerEmbed(
-                key: ValueKey(currentPlayingVideo), // Unique key for the video
+                key: ValueKey(currentPlayingVideo), 
                 callBackVideoController: (controller) {
                   videoController = controller;
                 },

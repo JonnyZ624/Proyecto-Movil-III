@@ -16,7 +16,7 @@ class _MyAppState extends State<Pagina2dra> {
   final List<String> listOfVideos = ["dHv0Mb9iEk8", "3vPbzEhF63s"];
   String currentPlayingVideo = "";
   VideoController? videoController;
-  bool isVideoReady = false; // To track if the video controller is initialized
+  bool isVideoReady = false; 
 
   @override
   void initState() {
@@ -35,7 +35,7 @@ class _MyAppState extends State<Pagina2dra> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pop(context); // Go back to the previous screen
+              Navigator.pop(context); 
             },
           ),
         ),
@@ -44,11 +44,11 @@ class _MyAppState extends State<Pagina2dra> {
           children: [
             // Video Player
             YoutubePlayerEmbed(
-              key: ValueKey(currentPlayingVideo), // Unique key for the video
+              key: ValueKey(currentPlayingVideo), 
               callBackVideoController: (controller) {
                 videoController = controller;
                 setState(() {
-                  isVideoReady = true; // Mark the video as ready when controller is set
+                  isVideoReady = true; 
                 });
               },
               videoId: currentPlayingVideo,
@@ -126,7 +126,7 @@ class _MyAppState extends State<Pagina2dra> {
                     ],
                   )
                 : const Center(
-                    child: CircularProgressIndicator(), // Show loading spinner while video is not ready
+                    child: CircularProgressIndicator(), 
                   ),
             const SizedBox(height: 50),
             ElevatedButton(

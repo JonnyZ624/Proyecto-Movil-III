@@ -27,14 +27,14 @@ class _MyAppState extends State<Pagina4dra> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Schindlers List',
-      theme: ThemeData.dark(), // Aplicando el tema oscuro aquí
+      theme: ThemeData.dark(), 
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Schindlers List'),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pop(context); // Volver a la pantalla anterior
+              Navigator.pop(context); 
             },
           ),
         ),

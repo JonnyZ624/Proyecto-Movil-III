@@ -27,14 +27,14 @@ class _MyAppState extends State<Pagina2ro> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Pride and Prejudice',
-      theme: ThemeData.dark(), // Estableciendo el tema oscuro
+      theme: ThemeData.dark(), 
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Pride and Prejudice'),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pop(context); // Volver a la pantalla anterior
+              Navigator.pop(context); 
             },
           ),
         ),
@@ -43,7 +43,7 @@ class _MyAppState extends State<Pagina2ro> {
           children: [
             // Reproductor de video
             YoutubePlayerEmbed(
-              key: ValueKey(currentPlayingVideo), // Clave única para el video
+              key: ValueKey(currentPlayingVideo), 
               callBackVideoController: (controller) {
                 videoController = controller;
               },

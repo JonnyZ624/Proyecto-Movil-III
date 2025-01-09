@@ -20,7 +20,7 @@ class _MyAppState extends State<Pagina3ca> {
   @override
   void initState() {
     super.initState();
-    currentPlayingVideo = listOfVideos.removeAt(0); // El primer video se carga
+    currentPlayingVideo = listOfVideos.removeAt(0); 
   }
 
   @override
@@ -30,8 +30,8 @@ class _MyAppState extends State<Pagina3ca> {
       theme: ThemeData(
         primarySwatch: Colors.red,
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.red, // Fondo rojo para el AppBar
-          titleTextStyle: TextStyle(color: Colors.white), // Título blanco
+          backgroundColor: Colors.red, 
+          titleTextStyle: TextStyle(color: Colors.white), 
         ),
       ),
       home: Scaffold(
@@ -40,18 +40,18 @@ class _MyAppState extends State<Pagina3ca> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () {
-              Navigator.pop(context); // Volver a la pantalla anterior
+              Navigator.pop(context); 
             },
           ),
         ),
         body: Container(
-          color: Colors.black87, // Fondo oscuro para la pantalla
+          color: Colors.black87, 
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // Reproductor de YouTube
               YoutubePlayerEmbed(
-                key: ValueKey(currentPlayingVideo), // Clave única para cada video
+                key: ValueKey(currentPlayingVideo), 
                 callBackVideoController: (controller) {
                   videoController = controller;
                 },
@@ -66,7 +66,7 @@ class _MyAppState extends State<Pagina3ca> {
                 onVideoEnd: () {
                   if (listOfVideos.isNotEmpty) {
                     setState(() {
-                      currentPlayingVideo = listOfVideos.removeAt(0); // Cambiar al siguiente video
+                      currentPlayingVideo = listOfVideos.removeAt(0); 
                     });
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -111,7 +111,7 @@ class _MyAppState extends State<Pagina3ca> {
                         ? () async {
                             await videoController?.playVideo();
                           }
-                        : null, // Habilitar solo si el controlador está disponible
+                        : null, 
                     child: const Text("Play"),
                   ),
                   const SizedBox(width: 20),
@@ -120,7 +120,7 @@ class _MyAppState extends State<Pagina3ca> {
                         ? () async {
                             await videoController?.pauseVideo();
                           }
-                        : null, // Habilitar solo si el controlador está disponible
+                        : null, 
                     child: const Text("Pause"),
                   ),
                   const SizedBox(width: 20),
@@ -129,7 +129,7 @@ class _MyAppState extends State<Pagina3ca> {
                         ? () async {
                             await videoController?.muteOrUnmuteVideo();
                           }
-                        : null, // Habilitar solo si el controlador está disponible
+                        : null, 
                     child: const Text("Mute / Unmute"),
                   ),
                 ],
@@ -140,7 +140,7 @@ class _MyAppState extends State<Pagina3ca> {
                     ? () async {
                         await videoController?.seekTo(time: 4);
                       }
-                    : null, // Habilitar solo si el controlador está disponible
+                    : null, 
                 child: const Text("Seek to 4 seconds (for test)"),
               ),
             ],

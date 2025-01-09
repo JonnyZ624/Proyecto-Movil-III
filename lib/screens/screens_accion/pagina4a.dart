@@ -28,25 +28,25 @@ class _MyAppState extends State<Pagina4a> {
     return MaterialApp(
       title: 'John Wick',
       home: Scaffold(
-        // AppBar con fondo negro y título blanco
+        
         appBar: AppBar(
-          title: const Text('John Wick', style: TextStyle(color: Colors.white)), // Título blanco
-          backgroundColor: Colors.black, // Fondo negro
+          title: const Text('John Wick', style: TextStyle(color: Colors.white)), 
+          backgroundColor: Colors.black, 
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.white), // Icono en blanco
+            icon: const Icon(Icons.arrow_back, color: Colors.white), 
             onPressed: () {
-              Navigator.pop(context); // Volver a la pantalla anterior
+              Navigator.pop(context); 
             },
           ),
         ),
         body: Container(
-          color: Colors.black, // Fondo negro para el cuerpo
+          color: Colors.black, 
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // Video Player
               YoutubePlayerEmbed(
-                key: ValueKey(currentPlayingVideo), // Unique key for the video
+                key: ValueKey(currentPlayingVideo), 
                 callBackVideoController: (controller) {
                   videoController = controller;
                 },

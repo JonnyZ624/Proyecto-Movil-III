@@ -111,7 +111,7 @@ class _MyAppState extends State<Pagina4co> {
                       ? () async {
                           await videoController?.playVideo();
                         }
-                      : null, // Disabled until the controller is initialized
+                      : null, 
                   child: const Text("Play"),
                 ),
                 const SizedBox(width: 20),
@@ -120,7 +120,7 @@ class _MyAppState extends State<Pagina4co> {
                       ? () async {
                           await videoController?.pauseVideo();
                         }
-                      : null, // Disabled until the controller is initialized
+                      : null, 
                   child: const Text("Pause"),
                 ),
                 const SizedBox(width: 20),
@@ -129,7 +129,7 @@ class _MyAppState extends State<Pagina4co> {
                       ? () async {
                           await videoController?.muteOrUnmuteVideo();
                         }
-                      : null, // Disabled until the controller is initialized
+                      : null, 
                   child: const Text("Mute / Unmute"),
                 ),
               ],
@@ -140,7 +140,7 @@ class _MyAppState extends State<Pagina4co> {
                   ? () async {
                       await videoController?.seekTo(time: 4);
                     }
-                  : null, // Disabled until the controller is initialized
+                  : null, 
               child: const Text("Seek to 4 seconds (for test)"),
             ),
           ],

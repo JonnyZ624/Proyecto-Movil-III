@@ -20,18 +20,18 @@ class _MyAppState extends State<Pagina2co> {
   @override
   void initState() {
     super.initState();
-    currentPlayingVideo = listOfVideos.removeAt(0); // Iniciar con el primer video
+    currentPlayingVideo = listOfVideos.removeAt(0);
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'The Hangover',
-      theme: ThemeData.dark().copyWith( // Aplicando tema oscuro
-        scaffoldBackgroundColor: Colors.black, // Fondo negro en toda la app
+      theme: ThemeData.dark().copyWith( 
+        scaffoldBackgroundColor: Colors.black, 
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.black, // Fondo negro en la barra superior
-          iconTheme: IconThemeData(color: Colors.white), // Iconos en blanco
+          backgroundColor: Colors.black, 
+          iconTheme: IconThemeData(color: Colors.white), 
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
         ),
@@ -42,7 +42,7 @@ class _MyAppState extends State<Pagina2co> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pop(context); // Volver a la pantalla anterior
+              Navigator.pop(context); 
             },
           ),
         ),
@@ -51,7 +51,7 @@ class _MyAppState extends State<Pagina2co> {
           children: [
             // Reproductor de YouTube
             YoutubePlayerEmbed(
-              key: ValueKey(currentPlayingVideo), // Clave única para cada video
+              key: ValueKey(currentPlayingVideo), 
               callBackVideoController: (controller) {
                 videoController = controller;
               },
@@ -66,7 +66,7 @@ class _MyAppState extends State<Pagina2co> {
               onVideoEnd: () {
                 if (listOfVideos.isNotEmpty) {
                   setState(() {
-                    currentPlayingVideo = listOfVideos.removeAt(0); // Cambiar al siguiente video
+                    currentPlayingVideo = listOfVideos.removeAt(0); 
                   });
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -101,8 +101,7 @@ class _MyAppState extends State<Pagina2co> {
                 }
               },
             ),
-            const SizedBox(height: 100), // Espacio entre el video y los controles
-            // Controles para el reproductor de video
+            const SizedBox(height: 100), 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -111,16 +110,16 @@ class _MyAppState extends State<Pagina2co> {
                       ? () async {
                           await videoController?.playVideo();
                         }
-                      : null, // Solo habilitar si el controlador está disponible
+                      : null, 
                   child: const Text("Play"),
                 ),
-                const SizedBox(width: 20), // Espacio entre los botones
+                const SizedBox(width: 20), 
                 ElevatedButton(
                   onPressed: videoController != null
                       ? () async {
                           await videoController?.pauseVideo();
                         }
-                      : null, // Solo habilitar si el controlador está disponible
+                      : null, 
                   child: const Text("Pause"),
                 ),
                 const SizedBox(width: 20),
@@ -129,7 +128,7 @@ class _MyAppState extends State<Pagina2co> {
                       ? () async {
                           await videoController?.muteOrUnmuteVideo();
                         }
-                      : null, // Solo habilitar si el controlador está disponible
+                      : null, 
                   child: const Text("Mute / Unmute"),
                 ),
               ],
@@ -139,9 +138,9 @@ class _MyAppState extends State<Pagina2co> {
             ElevatedButton(
               onPressed: videoController != null
                   ? () async {
-                      await videoController?.seekTo(time: 4); // Buscar al segundo 4
+                      await videoController?.seekTo(time: 4); 
                     }
-                  : null, // Solo habilitar si el controlador está disponible
+                  : null, 
               child: const Text("Seek to 4 seconds (for test)"),
             ),
           ],

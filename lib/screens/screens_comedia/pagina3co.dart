@@ -27,11 +27,11 @@ class _MyAppState extends State<Pagina3co> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: '21 Jump Street',
-      theme: ThemeData.dark().copyWith( // Aplicando tema oscuro
+      theme: ThemeData.dark().copyWith( 
         scaffoldBackgroundColor: Colors.black,
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.black, // Fondo negro en la barra de la app
-          iconTheme: IconThemeData(color: Colors.white), // Iconos en blanco
+          backgroundColor: Colors.black, 
+          iconTheme: IconThemeData(color: Colors.white), 
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
         ),
@@ -42,7 +42,7 @@ class _MyAppState extends State<Pagina3co> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pop(context); // Volver a la pantalla anterior
+              Navigator.pop(context); 
             },
           ),
         ),
@@ -111,7 +111,7 @@ class _MyAppState extends State<Pagina3co> {
                       ? () async {
                           await videoController?.playVideo();
                         }
-                      : null, // Solo habilitar si el controlador está disponible
+                      : null, 
                   child: const Text("Play"),
                 ),
                 const SizedBox(width: 20),
@@ -120,7 +120,7 @@ class _MyAppState extends State<Pagina3co> {
                       ? () async {
                           await videoController?.pauseVideo();
                         }
-                      : null, // Solo habilitar si el controlador está disponible
+                      : null, 
                   child: const Text("Pause"),
                 ),
                 const SizedBox(width: 20),
@@ -129,7 +129,7 @@ class _MyAppState extends State<Pagina3co> {
                       ? () async {
                           await videoController?.muteOrUnmuteVideo();
                         }
-                      : null, // Solo habilitar si el controlador está disponible
+                      : null, 
                   child: const Text("Mute / Unmute"),
                 ),
               ],
@@ -141,7 +141,7 @@ class _MyAppState extends State<Pagina3co> {
                   ? () async {
                       await videoController?.seekTo(time: 4);
                     }
-                  : null, // Solo habilitar si el controlador está disponible
+                  : null, 
               child: const Text("Seek to 4 seconds (for test)"),
             ),
           ],

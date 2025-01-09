@@ -13,53 +13,53 @@ class Pagina2t extends StatefulWidget {
 }
 
 class _MyAppState extends State<Pagina2t> {
-  final List<String> listOfVideos = ["1WYM5XuCnXE", "3vPbzEhF63s"]; // Lista de IDs de videos de YouTube
-  String currentPlayingVideo = ""; // El video que se está reproduciendo actualmente
+  final List<String> listOfVideos = ["vESLWJYVZto", "3vPbzEhF63s"]; 
+  String currentPlayingVideo = ""; 
   VideoController? videoController;
 
   @override
   void initState() {
     super.initState();
-    currentPlayingVideo = listOfVideos.removeAt(0); // Establecer el primer video para reproducir
+    currentPlayingVideo = listOfVideos.removeAt(0); 
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Superbad', // Título de la app
+      title: 'Hereditary', 
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Superbad'), // Título en la barra de navegación
+          title: const Text('Hereditary'), 
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pop(context); // Volver a la pantalla anterior
+              Navigator.pop(context); 
             },
           ),
         ),
-        backgroundColor: Colors.black, // Fondo de la pantalla negro
+        backgroundColor: Colors.black, 
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Widget para el reproductor de YouTube
             YoutubePlayerEmbed(
-              key: ValueKey(currentPlayingVideo), // Clave única para el video
+              key: ValueKey(currentPlayingVideo), 
               callBackVideoController: (controller) {
-                videoController = controller; // Guardar el controlador del video
+                videoController = controller; 
               },
-              videoId: currentPlayingVideo, // ID del video actual
-              customVideoTitle: "Superbad", // Título personalizado del video
-              autoPlay: false, // No reproducir automáticamente
-              hidenVideoControls: false, // Mostrar controles del video
-              mute: false, // No está silenciado por defecto
-              enabledShareButton: false, // Deshabilitar botón de compartir
-              hidenChannelImage: true, // Ocultar la imagen del canal
-              aspectRatio: 16 / 9, // Relación de aspecto del video
+              videoId: currentPlayingVideo, 
+              customVideoTitle: "Hereditary", 
+              autoPlay: false, 
+              hidenVideoControls: false, 
+              mute: false, 
+              enabledShareButton: false, 
+              hidenChannelImage: true, 
+              aspectRatio: 16 / 9, 
               onVideoEnd: () {
                 // Cuando el video termina
                 if (listOfVideos.isNotEmpty) {
                   setState(() {
-                    currentPlayingVideo = listOfVideos.removeAt(0); // Reproducir siguiente video
+                    currentPlayingVideo = listOfVideos.removeAt(0); 
                   });
                 } else {
                   // Mostrar un mensaje si no hay más videos para reproducir
@@ -69,9 +69,9 @@ class _MyAppState extends State<Pagina2t> {
                 }
               },
               onVideoSeek: (currentTime) =>
-                  print("Seeked to $currentTime seconds"), // Mostrar tiempo actual del video
+                  print("Seeked to $currentTime seconds"), 
               onVideoTimeUpdate: (currentTime) =>
-                  print("Current time: $currentTime seconds"), // Actualización del tiempo de reproducción
+                  print("Current time: $currentTime seconds"), 
               onVideoStateChange: (state) {
                 // Detectar cambios de estado del video
                 switch (state) {
@@ -103,19 +103,19 @@ class _MyAppState extends State<Pagina2t> {
               children: [
                 ElevatedButton(
                   onPressed: () async {
-                    await videoController?.playVideo(); // Reproducir video
+                    await videoController?.playVideo(); 
                   },
                   child: const Text("Play"),
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    await videoController?.pauseVideo(); // Pausar video
+                    await videoController?.pauseVideo(); 
                   },
                   child: const Text("Pause"),
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    await videoController?.muteOrUnmuteVideo(); // Silenciar / desilenciar video
+                    await videoController?.muteOrUnmuteVideo(); 
                   },
                   child: const Text("Mute / Unmute"),
                 ),
@@ -125,7 +125,7 @@ class _MyAppState extends State<Pagina2t> {
             // Botón para avanzar el video a los 4 segundos
             ElevatedButton(
               onPressed: () async {
-                await videoController?.seekTo(time: 4); // Avanzar a los 4 segundos
+                await videoController?.seekTo(time: 4); 
               },
               child: const Text("Seek to 4 seconds (for test)"),
             ),

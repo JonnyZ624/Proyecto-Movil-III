@@ -16,7 +16,7 @@ class _MyAppState extends State<Pagina3dra> {
   final List<String> listOfVideos = ["eZHsmb4ezEk", "3vPbzEhF63s"];
   String currentPlayingVideo = "";
   VideoController? videoController;
-  bool isVideoReady = false; // To track if the video is ready for controls
+  bool isVideoReady = false; 
 
   @override
   void initState() {
@@ -35,7 +35,7 @@ class _MyAppState extends State<Pagina3dra> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pop(context); // Go back to the previous screen
+              Navigator.pop(context); 
             },
           ),
         ),
@@ -48,7 +48,7 @@ class _MyAppState extends State<Pagina3dra> {
               callBackVideoController: (controller) {
                 videoController = controller;
                 setState(() {
-                  isVideoReady = true; // Video is ready
+                  isVideoReady = true; 
                 });
               },
               videoId: currentPlayingVideo,
@@ -126,7 +126,7 @@ class _MyAppState extends State<Pagina3dra> {
                     ],
                   )
                 : const Center(
-                    child: CircularProgressIndicator(), // Show loading spinner
+                    child: CircularProgressIndicator(), 
                   ),
             const SizedBox(height: 50),
             ElevatedButton(

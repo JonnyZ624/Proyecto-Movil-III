@@ -33,17 +33,17 @@ class _MyAppState extends State<Pagina1a> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pop(context); // Volver a la pantalla anterior
+              Navigator.pop(context); 
             },
           ),
         ),
         body: Container(
-          color: Colors.black, // Aquí le das el fondo negro
+          color: Colors.black, 
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               YoutubePlayerEmbed(
-                key: ValueKey(currentPlayingVideo), // Unique key for the video
+                key: ValueKey(currentPlayingVideo), 
                 callBackVideoController: (controller) {
                   videoController = controller;
                 },

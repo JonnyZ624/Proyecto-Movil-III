@@ -27,14 +27,14 @@ class _MyAppState extends State<Pagina1ro> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'The Notebook',
-      theme: ThemeData.dark(), // Aplicando el tema oscuro aquí
+      theme: ThemeData.dark(), 
       home: Scaffold(
         appBar: AppBar(
           title: const Text('The Notebook'),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pop(context); // Volver a la pantalla anterior
+              Navigator.pop(context); 
             },
           ),
         ),
@@ -43,7 +43,7 @@ class _MyAppState extends State<Pagina1ro> {
           children: [
             // Video Player
             YoutubePlayerEmbed(
-              key: ValueKey(currentPlayingVideo), // Unique key for the video
+              key: ValueKey(currentPlayingVideo), 
               callBackVideoController: (controller) {
                 videoController = controller;
               },

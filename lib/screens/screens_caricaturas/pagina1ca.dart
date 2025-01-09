@@ -30,8 +30,8 @@ class _MyAppState extends State<Pagina1ca> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.black, // Fondo negro para AppBar
-          titleTextStyle: TextStyle(color: Colors.white), // Título blanco
+          backgroundColor: Colors.black, 
+          titleTextStyle: TextStyle(color: Colors.white), 
         ),
       ),
       home: Scaffold(
@@ -40,18 +40,18 @@ class _MyAppState extends State<Pagina1ca> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () {
-              Navigator.pop(context); // Volver a la pantalla anterior
+              Navigator.pop(context); 
             },
           ),
         ),
         body: Container(
-          color: Colors.black, // Fondo negro para todo el cuerpo
+          color: Colors.black, 
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // Player de YouTube
               YoutubePlayerEmbed(
-                key: ValueKey(currentPlayingVideo), // Unique key for the video
+                key: ValueKey(currentPlayingVideo), 
                 callBackVideoController: (controller) {
                   videoController = controller;
                 },
